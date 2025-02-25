@@ -34,6 +34,7 @@ export async function GET(request: Request, response: Response) {
 
     const data = ytdl(url, { format });
 
+    //@ts-ignore
     return new Response(data as any, {
       headers: responseHeaders,
     });
