@@ -33,7 +33,7 @@ export async function GET(request: Request) {
 
     const data = ytdl(url, { format });
 
-    return new Response(data, {
+    return new Response(data as any, {
       headers: responseHeaders,
     });
   } catch (error) {
