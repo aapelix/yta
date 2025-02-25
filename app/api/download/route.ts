@@ -32,11 +32,11 @@ export async function GET(request: Request, response: Response) {
       throw new Error("No suitable format found");
     }
 
-    const data = ytdl(url, { format }) as unknown as ReadableStream<any>;
-    return new Response(data, {
+    const data = ytdl(url, { format });
+
+    return new Response(data as any, {
       headers: responseHeaders,
     });
-
   } catch (error) {
     console.error("Error fetching video info:", error);
     return NextResponse.json({ data: "Failed to fetch video info" });
