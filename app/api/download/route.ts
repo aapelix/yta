@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import ytdl from "@distube/ytdl-core";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get("link");
@@ -24,6 +26,7 @@ export async function GET(request: Request) {
       "User-Agent",
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
     );
+    responseHeaders.set("Cache-Control", "no-store");
 
     const format = ytdl.chooseFormat(videoInfo.formats, { quality: 'highestvideo' });
 
